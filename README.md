@@ -1,6 +1,6 @@
 # Trabalho Prático — Divisão e Conquista
 
-## 📌 Sobre o projeto
+##  Sobre o projeto
 
 Este projeto foi desenvolvido para a disciplina como parte do trabalho prático sobre a técnica de **Divisão e Conquista**. O objetivo é implementar algoritmos para dois problemas, comparar suas versões com soluções de força bruta e analisar experimentalmente seus tempos de execução.
 
@@ -8,7 +8,7 @@ Este projeto foi desenvolvido para a disciplina como parte do trabalho prático 
 **Integrantes:** Pedro Lucas de Oliveira Duarte e Samuel Batista Oliveira  
 **Linguagem:** Java
 
-## 🎯 Objetivos
+##  Objetivos
 
 - Implementar soluções por força bruta e por divisão e conquista.
 - Comparar a correção e o desempenho das implementações.
@@ -16,7 +16,7 @@ Este projeto foi desenvolvido para a disciplina como parte do trabalho prático 
 - Medir o tempo de execução para diferentes tamanhos de entrada.
 - Comparar os resultados observados com as complexidades teóricas.
 
-## 🧩 Problemas do trabalho
+##  Problemas do trabalho
 
 ### 1. Subarranjo de Soma Máxima
 
@@ -46,7 +46,7 @@ Implementações previstas:
 
 Na etapa de combinação, os pontos da faixa são considerados em ordem de coordenada `y`, comparando-se cada ponto com no máximo sete vizinhos seguintes. A justificativa desse limite deve ser apresentada no relatório.
 
-## 🧪 Testes da Etapa 1
+##  Testes da Etapa 1
 
 O projeto já contém uma bateria de testes para o problema do subarranjo de soma máxima.
 
@@ -55,7 +55,7 @@ O projeto já contém uma bateria de testes para o problema do subarranjo de som
 
 Os testes incluem vetores negativos, vetores de tamanho 1, empates, zeros e somas acima do limite de `int`. A execução deve ser realizada para confirmar os resultados no ambiente local.
 
-## 📊 Análise experimental
+##  Análise experimental
 
 O arquivo `BenchmarkEtapa1.java` mede o tempo de execução das três implementações da Etapa 1, com cinco execuções por tamanho de entrada. O programa gera:
 
@@ -66,7 +66,7 @@ O script `scripts/graficos.py` lê o CSV e gera uma tabela Markdown e gráficos 
 
 A análise final deverá comparar os tempos observados com as complexidades teóricas, discutir em quais tamanhos cada abordagem apresenta melhor desempenho e justificar o limiar escolhido na Etapa 2, caso seja utilizado.
 
-## ▶️ Como executar
+##  Como executar
 
 Os comandos abaixo pressupõem que os arquivos estejam organizados conforme a estrutura de pastas deste README e que os comandos sejam executados na raiz do repositório.
 
@@ -131,7 +131,7 @@ python scripts/graficos.py data/medicoes_etapa1.csv etapa1
 
 Os gráficos e a tabela serão salvos na pasta `figuras/`.
 
-## 📁 Estrutura do repositório
+##  Estrutura do repositório
 
 A estrutura recomendada para os arquivos já enviados é:
 
@@ -157,7 +157,7 @@ A estrutura recomendada para os arquivos já enviados é:
 
 Os arquivos CSV, de configuração e os gráficos são gerados durante a execução. Ajuste a estrutura caso os arquivos estejam em outros caminhos.
 
-## 📝 Relatório
+##  Relatório
 
 O relatório em PDF, com até oito páginas, deverá apresentar:
 
@@ -168,7 +168,7 @@ O relatório em PDF, com até oito páginas, deverá apresentar:
 - A justificativa do limite de comparações na faixa do problema do par de pontos mais próximos e do limiar utilizado, se aplicável.
 - A configuração da máquina usada nos experimentos.
 
-## 👥 Integrantes
+##  Integrantes
 
 - **Pedro Lucas de Oliveira Duarte**
 - **Samuel Batista Oliveira**
