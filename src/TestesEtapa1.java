@@ -6,12 +6,14 @@ public class TestesEtapa1 {
     public static void testar(String descricao, int[] v, int somaEsp, int iniEsp, int fimEsp) {
         int[] fb = SubarranjoMaximo.forcaBruta(v);
         int[] dc = SubarranjoMaximo.divisaoConquista(v);
+        int[] kd = SubarranjoMaximo.kadane(v);
         total++;
 
         boolean fbOk = fb[0] == somaEsp && fb[1] == iniEsp && fb[2] == fimEsp;
         boolean dcOk = dc[0] == somaEsp && dc[1] == iniEsp && dc[2] == fimEsp;
+        boolean kdOk = kd[0] == somaEsp && kd[1] == iniEsp && kd[2] == fimEsp;
 
-        if (fbOk && dcOk) {
+        if (fbOk && dcOk && kdOk) {
             System.out.println("OK     - " + descricao);
         } else {
             falhas++;
@@ -19,6 +21,7 @@ public class TestesEtapa1 {
             System.out.println("   esperado:            " + somaEsp + " " + iniEsp + " " + fimEsp);
             System.out.println("   força bruta:         " + fb[0] + " " + fb[1] + " " + fb[2]);
             System.out.println("   divisão e conquista: " + dc[0] + " " + dc[1] + " " + dc[2]);
+            System.out.println("   kadane:              " + kd[0] + " " + kd[1] + " " + kd[2]);
         }
     }
 
