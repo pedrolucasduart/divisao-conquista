@@ -96,6 +96,35 @@ public class SubarranjoMaximo {
         return resolver(v, 0, v.length - 1);
     }
 
+    public static int[] kadane(int[] v) {
+        int atual = v[0];
+        int inicioAtual = 0;
+        int melhor = v[0];
+        int melhorIni = 0;
+        int melhorFim = 0;
+
+        for (int i = 1; i < v.length; i++) {
+            if (atual >= 0) {
+                atual = atual + v[i];
+            } else {
+                atual = v[i];
+                inicioAtual = i;
+            }
+
+            if (atual > melhor) {
+                melhor = atual;
+                melhorIni = inicioAtual;
+                melhorFim = i;
+            }
+        }
+
+        int[] resultado = new int[3];
+        resultado[0] = melhor;
+        resultado[1] = melhorIni;
+        resultado[2] = melhorFim;
+        return resultado;
+    }
+
 
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
