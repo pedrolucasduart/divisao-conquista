@@ -26,18 +26,45 @@ public class SubarranjoMaximo {
         return resultado;
     }
 
+    public static int[] cruzandoMeio(int[] v, int inicio, int meio, int fim) {
 
-    public static void main(String[] args) {
-        Scanner teclado = new Scanner(System.in);
-
-        int n = teclado.nextInt();
-        int[] v = new int[n];
-        for (int i = 0; i < n; i++) {
-            v[i] = teclado.nextInt();
+        int soma = 0;
+        int melhorEsq = v[meio];
+        int posIni = meio;
+        for (int i = meio; i >= inicio; i--) {
+            soma = soma + v[i];
+            if (soma >= melhorEsq) {
+                melhorEsq = soma;
+                posIni = i;
+            }
         }
 
-        int[] r = forcaBruta(v);
-        System.out.println(r[0] + " " + r[1] + " " + r[2]);
+        soma = 0;
+        int melhorDir = v[meio + 1];
+        int posFim = meio + 1;
+        for (int j = meio + 1; j <= fim; j++) {
+            soma = soma + v[j];
+            if (soma > melhorDir) {
+                melhorDir = soma;
+                posFim = j;
+            }
+        }
+
+        int[] resultado = new int[3];
+        resultado[0] = melhorEsq + melhorDir;
+        resultado[1] = posIni;
+        resultado[2] = posFim;
+        return resultado;
     }
 
+
+    public static void main(String[] args) {
+        int[] v = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        int[] r = cruzandoMeio(v, 0, 4, 8);
+        System.out.println(r[0] + " " + r[1] + " " + r[2]);
+
+        int[] w = {5, -1, -1, 5};
+        int[] r2 = cruzandoMeio(w, 0, 1, 3);
+        System.out.println(r2[0] + " " + r2[1] + " " + r2[2]);
+    }
 }
