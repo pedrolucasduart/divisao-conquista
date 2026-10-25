@@ -57,14 +57,57 @@ public class SubarranjoMaximo {
         return resultado;
     }
 
+    public static boolean melhorQue(int[] a, int[] b) {
+        if (a[0] != b[0]) {
+            return a[0] > b[0];
+        }
+        if (a[1] != b[1]) {
+            return a[1] < b[1];
+        }
+        return a[2] < b[2];
+    }
+
+    public static int[] resolver(int[] v, int inicio, int fim) {
+        if (inicio == fim) {
+            int[] r = new int[3];
+            r[0] = v[inicio];
+            r[1] = inicio;
+            r[2] = inicio;
+            return r;
+        }
+
+        int meio = (inicio + fim) / 2;
+
+        int[] esquerda = resolver(v, inicio, meio);
+        int[] direita = resolver(v, meio + 1, fim);
+        int[] cruzando = cruzandoMeio(v, inicio, meio, fim);
+
+        int[] melhor = esquerda;
+        if (melhorQue(cruzando, melhor)) {
+            melhor = cruzando;
+        }
+        if (melhorQue(direita, melhor)) {
+            melhor = direita;
+        }
+        return melhor;
+    }
+
+    public static int[] divisaoConquista(int[] v) {
+        return resolver(v, 0, v.length - 1);
+    }
+
 
     public static void main(String[] args) {
-        int[] v = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
-        int[] r = cruzandoMeio(v, 0, 4, 8);
-        System.out.println(r[0] + " " + r[1] + " " + r[2]);
+        Scanner teclado = new Scanner(System.in);
 
-        int[] w = {5, -1, -1, 5};
-        int[] r2 = cruzandoMeio(w, 0, 1, 3);
-        System.out.println(r2[0] + " " + r2[1] + " " + r2[2]);
+        int n = teclado.nextInt();
+        int[] v = new int[n];
+        for (int i = 0; i < n; i++) {
+            v[i] = teclado.nextInt();
+        }
+
+        int[] r = divisaoConquista(v);
+        System.out.println(r[0] + " " + r[1] + " " + r[2]);
     }
+
 }

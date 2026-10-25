@@ -4,15 +4,21 @@ public class TestesEtapa1 {
     static int falhas = 0;
 
     public static void testar(String descricao, int[] v, int somaEsp, int iniEsp, int fimEsp) {
-        int[] r = SubarranjoMaximo.forcaBruta(v);
+        int[] fb = SubarranjoMaximo.forcaBruta(v);
+        int[] dc = SubarranjoMaximo.divisaoConquista(v);
         total++;
-        if (r[0] == somaEsp && r[1] == iniEsp && r[2] == fimEsp) {
-            System.out.println("OK - " + descricao);
+
+        boolean fbOk = fb[0] == somaEsp && fb[1] == iniEsp && fb[2] == fimEsp;
+        boolean dcOk = dc[0] == somaEsp && dc[1] == iniEsp && dc[2] == fimEsp;
+
+        if (fbOk && dcOk) {
+            System.out.println("OK     - " + descricao);
         } else {
             falhas++;
             System.out.println("FALHOU - " + descricao);
-            System.out.println("   esperado: " + somaEsp + " " + iniEsp + " " + fimEsp);
-            System.out.println("   obtido:   " + r[0] + " " + r[1] + " " + r[2]);
+            System.out.println("   esperado:            " + somaEsp + " " + iniEsp + " " + fimEsp);
+            System.out.println("   força bruta:         " + fb[0] + " " + fb[1] + " " + fb[2]);
+            System.out.println("   divisão e conquista: " + dc[0] + " " + dc[1] + " " + dc[2]);
         }
     }
 
