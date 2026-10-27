@@ -28,13 +28,13 @@ Dada uma sequência de inteiros que representa variações diárias no preço de
 Implementações:
 - **Força bruta — O(n²):** examina os intervalos possíveis e identifica aquele com a maior soma.
 - **Divisão e conquista — O(n log n):** divide o vetor em duas metades, resolve cada metade recursivamente e calcula a melhor solução que cruza o meio.
-- **Kadane — O(n):** implementação adicional do algoritmo linear, exigida como questão-desafio.
+- **Kadane — O(n):** implementação adicional do algoritmo linear.
 
 **Casos de borda cobertos pelos testes:**
 - Vetor com apenas valores negativos.
 - Vetor de tamanho 1.
 - Empates entre intervalos com a mesma soma máxima.
-- Vetor com zeros e valores grandes.
+- Vetor com zeros.
 
 ### 2. Par de Pontos Mais Próximos
 
@@ -50,19 +50,17 @@ Na etapa de combinação, os pontos da faixa são considerados em ordem de coord
 
 O projeto já contém uma bateria de testes para o problema do subarranjo de soma máxima.
 
-- `TestesEtapa1.java`: executa os casos do arquivo de testes e testes aleatórios, comparando os resultados dos três algoritmos.
-- `tests/casos_etapa1.txt`: contém entradas e saídas esperadas para casos de borda e outros cenários.
+- `TestesEtapa1.java`: executa 14 casos de teste nas três implementações (força bruta, divisão e conquista e Kadane) e informa quantos passaram.
+- `tests/casos_etapa1.txt`: contém os mesmos 14 casos, com entrada, saída esperada e a justificativa de cada um.
 
-Os testes incluem vetores negativos, vetores de tamanho 1, empates, zeros e somas acima do limite de `int`. A execução deve ser realizada para confirmar os resultados no ambiente local.
+Os casos incluem vetor só com negativos, vetor de tamanho 1, empates entre intervalos de mesma soma, zeros e casos em que o melhor intervalo cruza o meio ou fica inteiro em uma das metades.
+
 
 ##  Análise experimental
 
-O arquivo `BenchmarkEtapa1.java` mede o tempo de execução das três implementações da Etapa 1, com cinco execuções por tamanho de entrada. O programa gera:
+O arquivo `BenchmarkEtapa1.java` mede o tempo de execução das três implementações da Etapa 1, com cinco execuções por tamanho de entrada, e gera `data/medicoes_etapa1.csv` (medições brutas, em nanossegundos).
 
-- `data/medicoes_etapa1.csv`: medições brutas dos tempos.
-- `data/configuracao_maquina.txt`: informações do sistema e do ambiente Java; o modelo da CPU e a quantidade de RAM devem ser completados manualmente.
-
-O script `scripts/graficos.py` lê o CSV e gera uma tabela Markdown e gráficos de comparação na pasta `figuras/`.
+A configuração da máquina usada está em `data/configuracao_maquina.txt` (preenchida manualmente). A tabela e os gráficos, gerados a partir do CSV, estão em `figuras/`.
 
 A análise final deverá comparar os tempos observados com as complexidades teóricas, discutir em quais tamanhos cada abordagem apresenta melhor desempenho e justificar o limiar escolhido na Etapa 2, caso seja utilizado.
 
@@ -101,35 +99,17 @@ java -cp out SubarranjoMaximo dc < entrada.txt
 java -cp out TestesEtapa1
 ```
 
-Por padrão, o programa procura `tests/casos_etapa1.txt`. Para usar outro arquivo:
-
-```bash
-java -cp out TestesEtapa1 caminho/do/arquivo.txt
-```
-
 ### 4. Executar o benchmark
 
 ```bash
 java -cp out BenchmarkEtapa1
 ```
 
-O benchmark cria a pasta `data/` e gera os arquivos de medições e configuração da máquina.
+O benchmark cria a pasta data/ e gera o arquivo de medições data/medicoes_etapa1.csv.
 
-### 5. Instalar dependências e gerar os gráficos
+### 5. Tabela e gráficos
 
-É necessário ter Python 3 instalado. Instale as bibliotecas:
-
-```bash
-python -m pip install pandas numpy matplotlib
-```
-
-Depois de gerar o CSV, execute:
-
-```bash
-python scripts/graficos.py data/medicoes_etapa1.csv etapa1
-```
-
-Os gráficos e a tabela serão salvos na pasta `figuras/`.
+A tabela de médias e os gráficos (escala linear, log-log, cruzamento e normalizado) estão em `figuras/` e foram gerados a partir de `data/medicoes_etapa1.csv`.
 
 ##  Estrutura do repositório
 
@@ -143,8 +123,6 @@ A estrutura recomendada para os arquivos já enviados é:
 │   └── BenchmarkEtapa1.java
 ├── tests/
 │   └── casos_etapa1.txt
-├── scripts/
-│   └── graficos.py
 ├── data/
 │   ├── medicoes_etapa1.csv
 │   └── configuracao_maquina.txt
@@ -155,7 +133,7 @@ A estrutura recomendada para os arquivos já enviados é:
 └── .gitignore
 ```
 
-Os arquivos CSV, de configuração e os gráficos são gerados durante a execução. Ajuste a estrutura caso os arquivos estejam em outros caminhos.
+O CSV é gerado pelo benchmark; a configuração da máquina foi preenchida manualmente e os gráficos foram gerados a partir do CSV. Os arquivos da Etapa 2 (Samuel) ficam em `src/` e `tests/`.
 
 ##  Relatório
 
