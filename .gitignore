@@ -1,3 +1,5 @@
 out/
 .idea/
-*.iml
+*.imlgit add .gitignore
+     git commit -m "chore: remove arquivo .iml do controle de versão"
+     git push
