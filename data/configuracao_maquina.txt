@@ -1,0 +1,4 @@
+Processador: AMD Ryzen 5 5600gt
+Memória RAM: 16gb
+Sistema operacional: Windows 10
+Java: 21
