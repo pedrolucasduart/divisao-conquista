@@ -1,0 +1,42 @@
+# Só negativos: a resposta é o maior elemento, não um intervalo vazio
+5 -8 -3 -6 -2 -5
+-2 3 3
+# Só negativos com empate: vale o primeiro (menor índice de início)
+3 -4 -4 -4
+-4 0 0
+# Tamanho 1, positivo
+1 7
+7 0 0
+# Tamanho 1, negativo
+1 -3
+-3 0 0
+# Empate: [1], [1] e [1,-1,1] têm soma 1; vence o primeiro encontrado
+3 1 -1 1
+1 0 0
+# Empate múltiplo com vários intervalos de soma 3; vence o primeiro
+5 3 -3 3 -3 3
+3 0 0
+# Empate no meio: (1,1), (3,3) e (1,3) têm soma 2; vence (1,1)
+4 -1 2 -2 2
+2 1 1
+# Dois elementos negativos, o melhor é o segundo
+2 -2 -1
+-1 1 1
+# Todos positivos: o vetor inteiro
+4 1 2 3 4
+10 0 3
+# Todos zeros: empate total, vence o primeiro
+3 0 0 0
+0 0 0
+# Exemplo clássico, o melhor intervalo cruza o meio
+9 -2 1 -3 4 -1 2 1 -5 4
+6 3 6
+# Vetor inteiro atravessa o meio apesar de elementos negativos
+4 5 -1 -1 5
+8 0 3
+# Melhor intervalo totalmente na metade esquerda
+6 4 5 -20 1 -1 2
+9 0 1
+# Melhor intervalo totalmente na metade direita
+6 1 -1 2 -20 6 7
+13 4 5
