@@ -135,7 +135,19 @@ public class SubarranjoMaximo {
             v[i] = teclado.nextInt();
         }
 
-        int[] r = divisaoConquista(v);
+        String algoritmo = "dc";
+        if (args.length > 0) {
+            algoritmo = args[0];
+        }
+
+        int[] r;
+        if (algoritmo.equals("forca-bruta")) {
+            r = forcaBruta(v);
+        } else if (algoritmo.equals("kadane")) {
+            r = kadane(v);
+        } else {
+            r = divisaoConquista(v);
+        }
         System.out.println(r[0] + " " + r[1] + " " + r[2]);
     }
 
