@@ -139,6 +139,7 @@ Os gráficos foram produzidos a partir dos dados experimentais. `src/GeradorGraf
 ├── figuras/
 │   ├── *.png
 │   └── tabela_*.md
+├── report/                 
 ├── README.md
 └── .gitignore
 ```
