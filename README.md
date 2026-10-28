@@ -1,156 +1,154 @@
 # Trabalho Prático — Divisão e Conquista
 
-##  Sobre o projeto
-
-Este projeto foi desenvolvido para a disciplina como parte do trabalho prático sobre a técnica de **Divisão e Conquista**. O objetivo é implementar algoritmos para dois problemas, comparar suas versões com soluções de força bruta e analisar experimentalmente seus tempos de execução.
-
-**Prazo de entrega:** 28/10/2026  
+**Disciplina:** Trabalho prático de algoritmos  
 **Integrantes:** Pedro Lucas de Oliveira Duarte e Samuel Batista Oliveira  
-**Linguagem:** Java
+**Linguagem:** Java (JDK 21 utilizado nos experimentos)  
+**Data de entrega:** 28/10/2026
 
-##  Objetivos
+## Sobre o projeto
 
-- Implementar soluções por força bruta e por divisão e conquista.
-- Comparar a correção e o desempenho das implementações.
-- Criar casos de teste, incluindo situações de borda.
-- Medir o tempo de execução para diferentes tamanhos de entrada.
-- Comparar os resultados observados com as complexidades teóricas.
+Implementação, validação e análise experimental de algoritmos de **força bruta** e **divisão e conquista** em dois problemas: **Subarranjo de Soma Máxima** e **Par de Pontos Mais Próximos**. Também foi implementado o algoritmo linear de Kadane para a primeira etapa. As medições foram registradas em CSV e apresentadas em tabelas e gráficos.
 
-##  Problemas do trabalho
+## Etapa 1 — Subarranjo de Soma Máxima
 
-### 1. Subarranjo de Soma Máxima
+Dada uma sequência de inteiros, encontrar a maior soma de um subarranjo contínuo e seus índices inicial e final (base zero).
 
-Dada uma sequência de inteiros que representa variações diárias no preço de uma ação, o objetivo é encontrar o intervalo contínuo cuja soma seja máxima.
+| Algoritmo | Complexidade de tempo | Descrição |
+|---|---|---|
+| Força bruta | O(n²) | Examina todos os intervalos, acumulando as somas incrementalmente. |
+| Divisão e conquista | O(n log n) | Resolve as duas metades e combina o melhor intervalo que cruza o meio. |
+| Kadane | O(n) | Percorre o vetor uma vez, mantendo a melhor soma corrente. |
 
-**Entrada:** um inteiro `n`, seguido de `n` valores inteiros.  
-**Saída:** a soma máxima e os índices inicial e final do intervalo encontrado.
+**Recorrência de divisão e conquista:** `T(n) = 2T(n/2) + O(n)`.
 
-Implementações:
-- **Força bruta — O(n²):** examina os intervalos possíveis e identifica aquele com a maior soma.
-- **Divisão e conquista — O(n log n):** divide o vetor em duas metades, resolve cada metade recursivamente e calcula a melhor solução que cruza o meio.
-- **Kadane — O(n):** implementação adicional do algoritmo linear.
+### Testes da Etapa 1
 
-**Casos de borda cobertos pelos testes:**
-- Vetor com apenas valores negativos.
-- Vetor de tamanho 1.
-- Empates entre intervalos com a mesma soma máxima.
-- Vetor com zeros.
+`src/TestesEtapa1.java` executa **14 casos** nas três implementações. Os casos incluem vetores somente negativos, tamanho 1, zeros, empates, intervalos cruzando o meio e soluções restritas a uma das metades. As entradas e saídas esperadas estão em `tests/casos_etapa1.txt`.
 
-### 2. Par de Pontos Mais Próximos
+### Experimentos da Etapa 1
 
-Dadas as coordenadas de `n` pontos em um plano, o objetivo é encontrar o par cuja distância euclidiana é a menor.
+`src/BenchmarkEtapa1.java` mede as três soluções em dez tamanhos de entrada, com **5 repetições por tamanho e algoritmo**. Os dados brutos estão em `data/medicoes_etapa1.csv`. O relatório da equipe registra o ambiente AMD Ryzen 5 5600GT, 16 GB de RAM, Windows 10 e Java 21.
 
-Implementações previstas:
-- **Força bruta — O(n²):** calcula a distância entre todos os pares de pontos.
-- **Divisão e conquista — O(n log n):** divide os pontos pela mediana das coordenadas `x`, resolve recursivamente os dois lados e verifica os pontos próximos à linha divisória.
+## Etapa 2 — Par de Pontos Mais Próximos
 
-Na etapa de combinação, os pontos da faixa são considerados em ordem de coordenada `y`, comparando-se cada ponto com no máximo sete vizinhos seguintes. A justificativa desse limite deve ser apresentada no relatório.
+Dado um conjunto de pontos `(x, y)`, encontrar a menor distância euclidiana entre dois deles.
 
-##  Testes da Etapa 1
+| Algoritmo | Complexidade de tempo | Arquivo |
+|---|---|---|
+| Força bruta | O(n²) | `src/ForcaBrutaPontos.java` |
+| Divisão e conquista | O(n log n) | `src/DivisaoConquistaPontos.java` |
 
-O projeto já contém uma bateria de testes para o problema do subarranjo de soma máxima.
+Na divisão e conquista, os pontos são separados pela mediana de `x`; após resolver as metades, verifica-se a faixa central de largura `2δ`, ordenada por `y`, comparando até **7 vizinhos seguintes** por ponto. A justificativa geométrica está no relatório final.
 
-- `TestesEtapa1.java`: executa 14 casos de teste nas três implementações (força bruta, divisão e conquista e Kadane) e informa quantos passaram.
-- `tests/casos_etapa1.txt`: contém os mesmos 14 casos, com entrada, saída esperada e a justificativa de cada um.
+**Recorrência:** `T(n) = 2T(n/2) + O(n)`, assumindo manutenção eficiente da ordem por `y`.
 
-Os casos incluem vetor só com negativos, vetor de tamanho 1, empates entre intervalos de mesma soma, zeros e casos em que o melhor intervalo cruza o meio ou fica inteiro em uma das metades.
+### Testes da Etapa 2
 
+`tests/TestesPontos.java` foi executado com **1.007 testes aprovados**: sete casos específicos (dois pontos, duplicados, alinhados, quatro pontos, par cruzando a divisão, mesmo `y` e empate) e mil casos aleatórios comparados à força bruta.
 
-##  Análise experimental
+### Experimentos da Etapa 2
 
-O arquivo `BenchmarkEtapa1.java` mede o tempo de execução das três implementações da Etapa 1, com cinco execuções por tamanho de entrada, e gera `data/medicoes_etapa1.csv` (medições brutas, em nanossegundos).
+- `src/BenchmarkPontos.java`: compara o desempenho das duas implementações.
+- `src/BenchmarkLimiar.java`: avalia os limiares **3, 8, 16, 32 e 64** para usar força bruta nos subproblemas pequenos.
+- `data/benchmark_pontos.csv`: medições de comparação.
+- `data/benchmark_limiares.csv`: medições dos limiares.
+- `figuras/tabela_etapa2.md` e `figuras/tabela_limiares.md`: tabelas dos resultados.
 
-A configuração da máquina usada está em `data/configuracao_maquina.txt` (preenchida manualmente). A tabela e os gráficos, gerados a partir do CSV, estão em `figuras/`.
+O **limiar 16** foi adotado porque apresentou o melhor resultado agregado nas medições documentadas, embora outros limiares possam vencer em tamanhos isolados. O relatório descreve a metodologia, os gráficos, as limitações e a interpretação dos resultados.
 
-A análise final deverá comparar os tempos observados com as complexidades teóricas, discutir em quais tamanhos cada abordagem apresenta melhor desempenho e justificar o limiar escolhido na Etapa 2, caso seja utilizado.
+**Ambiente documentado para a Etapa 2:** AMD Ryzen 5 5600GT com Radeon Graphics, 16 GB de RAM, Windows 11 Pro e Java 21. Consulte também `data/configuracao_maquina.txt` para os registros de configuração do projeto.
 
-##  Como executar
+## Como compilar e executar
 
-Os comandos abaixo pressupõem que os arquivos estejam organizados conforme a estrutura de pastas deste README e que os comandos sejam executados na raiz do repositório.
+Execute os comandos a partir da **raiz do repositório**, com o **JDK 21** instalado e `javac` e `java` apontando para a mesma instalação. No PowerShell do Windows, crie a pasta de saída:
 
-### 1. Compilar os programas Java
-
-É necessário utilizar uma versão compatível com Java 17 ou superior.
-
-```bash
-mkdir out
-javac -d out src/SubarranjoMaximo.java src/TestesEtapa1.java src/BenchmarkEtapa1.java
+```powershell
+New-Item -ItemType Directory -Force out | Out-Null
 ```
 
-### 2. Executar um algoritmo da Etapa 1
+### Etapa 1
 
-O programa recebe `n` e, em seguida, os `n` inteiros pela entrada padrão. A saída contém `soma inicio fim`, com índices começando em zero.
+```powershell
+javac -d out src/SubarranjoMaximo.java src/TestesEtapa1.java src/BenchmarkEtapa1.java
+java -cp out TestesEtapa1
+java -cp out BenchmarkEtapa1
+```
 
-```bash
+Para executar uma solução com dados digitados na entrada padrão:
+
+```powershell
 java -cp out SubarranjoMaximo forca-bruta
 java -cp out SubarranjoMaximo dc
 java -cp out SubarranjoMaximo kadane
 ```
 
-Também é possível redirecionar uma entrada salva em arquivo:
+Informe `n` seguido dos `n` valores inteiros. A saída apresenta `soma inicio fim`, com índices iniciando em zero.
 
-```bash
-java -cp out SubarranjoMaximo dc < entrada.txt
+### Etapa 2 — Testes
+
+```powershell
+javac -d out src/ForcaBrutaPontos.java src/DivisaoConquistaPontos.java tests/TestesPontos.java
+java -cp out TestesPontos
 ```
 
-### 3. Executar os testes
+### Etapa 2 — Benchmarks
 
-```bash
-java -cp out TestesEtapa1
+```powershell
+javac -d out src/ForcaBrutaPontos.java src/DivisaoConquistaPontos.java src/BenchmarkPontos.java src/BenchmarkLimiar.java
+java -cp out BenchmarkPontos
+java -cp out BenchmarkLimiar
 ```
 
-### 4. Executar o benchmark
+**Atenção no Windows:** se o `java` do terminal apontar para Java 8, enquanto `javac` usa Java 21, pode ocorrer `UnsupportedClassVersionError`. Verifique com `java -version`, `javac -version` e `where.exe java`. No IntelliJ IDEA, configure o SDK e a execução para Java 21.
 
-```bash
-java -cp out BenchmarkEtapa1
-```
+## Gráficos e tabelas
 
-O benchmark cria a pasta data/ e gera o arquivo de medições data/medicoes_etapa1.csv.
+A pasta `figuras/` contém:
 
-### 5. Tabela e gráficos
+| Etapa 1 | Etapa 2 |
+|---|---|
+| `grafico_linear.png` | `grafico_comparacao_pontos.png` |
+| `grafico_loglog.png` | `grafico_divisao_conquista.png` |
+| `grafico_cruzamento.png` | `grafico_limiares.png` |
+| `grafico_normalizado.png` | `tabela_etapa2.md` |
+| `tabela_etapa1.md` | `tabela_limiares.md` |
 
-A tabela de médias e os gráficos (escala linear, log-log, cruzamento e normalizado) estão em `figuras/` e foram gerados a partir de `data/medicoes_etapa1.csv`.
+Os gráficos foram produzidos a partir dos dados experimentais. `src/GeradorGraficos.java` também está presente no projeto.
 
-##  Estrutura do repositório
-
-A estrutura recomendada para os arquivos já enviados é:
+## Organização do repositório
 
 ```text
 .
 ├── src/
 │   ├── SubarranjoMaximo.java
 │   ├── TestesEtapa1.java
-│   └── BenchmarkEtapa1.java
+│   ├── BenchmarkEtapa1.java
+│   ├── ForcaBrutaPontos.java
+│   ├── DivisaoConquistaPontos.java
+│   ├── BenchmarkPontos.java
+│   ├── BenchmarkLimiar.java
+│   └── GeradorGraficos.java
 ├── tests/
-│   └── casos_etapa1.txt
+│   ├── casos_etapa1.txt
+│   └── TestesPontos.java
 ├── data/
 │   ├── medicoes_etapa1.csv
+│   ├── benchmark_pontos.csv
+│   ├── benchmark_limiares.csv
 │   └── configuracao_maquina.txt
 ├── figuras/
-├── report/
-│   └── relatorio.pdf
+│   ├── *.png
+│   └── tabela_*.md
 ├── README.md
 └── .gitignore
 ```
 
-O CSV é gerado pelo benchmark; a configuração da máquina foi preenchida manualmente e os gráficos foram gerados a partir do CSV. Os arquivos da Etapa 2 (Samuel) ficam em `src/` e `tests/`.
+## Relatório final
 
-##  Relatório
+O **relatório consolidado de 7 páginas** reúne as duas etapas, as recorrências, os testes, a comparação experimental com gráficos e tabelas, a justificativa das sete comparações na faixa e a escolha do limiar 16. O PDF deve ser incluído na entrega conforme as orientações do professor (por exemplo, em `report/relatorio.pdf`).
 
-O relatório em PDF, com até oito páginas, deverá apresentar:
+## Observações
 
-- As recorrências dos algoritmos.
-- Os resultados das medições em tabelas e gráficos.
-- A discussão dos resultados observados em comparação com a análise teórica.
-- A comparação entre força bruta e divisão e conquista para diferentes tamanhos de entrada.
-- A justificativa do limite de comparações na faixa do problema do par de pontos mais próximos e do limiar utilizado, se aplicável.
-- A configuração da máquina usada nos experimentos.
-
-##  Integrantes
-
-- **Pedro Lucas de Oliveira Duarte**
-- **Samuel Batista Oliveira**
-
----
-
-Trabalho acadêmico desenvolvido para estudar e avaliar algoritmos baseados na técnica de **Divisão e Conquista**.
+- A aprovação dos testes locais não substitui a bateria de avaliação do professor.
+- Os tempos são específicos das máquinas e das condições de medição; a comparação direta de tempos absolutos entre as etapas requer cautela.
+- Os arquivos CSV permitem consultar as medições brutas; os gráficos e o relatório apresentam resultados resumidos.
