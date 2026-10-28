@@ -113,21 +113,19 @@ A pasta `figuras/` contém:
 | `grafico_normalizado.png` | `tabela_etapa2.md` |
 | `tabela_etapa1.md` | `tabela_limiares.md` |
 
-Os gráficos foram produzidos a partir dos dados experimentais. `src/GeradorGraficos.java` também está presente no projeto.
 
 ## Organização do repositório
 
 ```text
 .
 ├── src/
-│   ├── SubarranjoMaximo.java
-│   ├── TestesEtapa1.java
 │   ├── BenchmarkEtapa1.java
-│   ├── ForcaBrutaPontos.java
-│   ├── DivisaoConquistaPontos.java
-│   ├── BenchmarkPontos.java
 │   ├── BenchmarkLimiar.java
-│   └── GeradorGraficos.java
+│   ├── BenchmarkPontos.java
+│   ├── DivisaoConquistaPontos.java
+│   ├── ForcaBrutaPontos.java
+│   ├── SubarranjoMaximo.java
+│   └── TestesEtapa1.java
 ├── tests/
 │   ├── casos_etapa1.txt
 │   └── TestesPontos.java
@@ -139,14 +137,17 @@ Os gráficos foram produzidos a partir dos dados experimentais. `src/GeradorGraf
 ├── figuras/
 │   ├── *.png
 │   └── tabela_*.md
-├── report/                 
+├── relatorio/      
+    └── relatorio-final.pdf           
 ├── README.md
 └── .gitignore
 ```
 
 ## Relatório final
 
-O **relatório consolidado de 7 páginas** reúne as duas etapas, as recorrências, os testes, a comparação experimental com gráficos e tabelas, a justificativa das sete comparações na faixa e a escolha do limiar 16. O PDF deve ser incluído na entrega conforme as orientações do professor (por exemplo, em `report/relatorio.pdf`).
+O **relatório consolidado de 7 páginas** reúne as duas etapas, as recorrências, os testes, a comparação experimental com gráficos e tabelas, a justificativa das sete comparações na faixa e a escolha do limiar 16.
+
+O documento está disponível em [`relatorio/relatorio-final.pdf`](relatorio/relatorio-final.pdf).
 
 ## Observações
 
