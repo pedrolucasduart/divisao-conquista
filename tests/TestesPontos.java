@@ -16,8 +16,7 @@ public class TestesPontos {
                 new double[][]{{0, 0}, {2, 2}, {1, 1}, {2, 3}}, 1.0);
 
         testar("Par cruzando a divisao",
-                new double[][]{
-                        {0, 0}, {1, 10}, {4, 4},
+                new double[][]{{0, 0}, {1, 10}, {4, 4},
                         {5, 4}, {8, 10}, {9, 0}
                 }, 1.0);
 

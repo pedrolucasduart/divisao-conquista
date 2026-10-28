@@ -1,4 +1,3 @@
-
 public class ForcaBrutaPontos {
 
     public static double calcular(double[][] pontos) {
