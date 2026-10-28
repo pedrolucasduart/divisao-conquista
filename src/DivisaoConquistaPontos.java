@@ -4,6 +4,18 @@ import java.util.Comparator;
 
 public class DivisaoConquistaPontos {
 
+    private static int limiar = 16;
+
+    public static void definirLimiar(int novoLimiar) {
+        if (novoLimiar < 2) {
+            throw new IllegalArgumentException(
+                    "O limiar deve ser pelo menos 2."
+            );
+        }
+
+        limiar = novoLimiar;
+    }
+
     public static double calcular(double[][] pontos) {
 
         if (pontos == null || pontos.length < 2) {
@@ -24,12 +36,11 @@ public class DivisaoConquistaPontos {
         return resolver(ordenadosX, ordenadosY);
     }
 
-
     private static double resolver(double[][] px, double[][] py) {
 
         int n = px.length;
 
-        if (n <= 3) {
+        if (n <= limiar) {
             return ForcaBrutaPontos.calcular(px);
         }
 
@@ -93,5 +104,4 @@ public class DivisaoConquistaPontos {
 
         return menorDistancia;
     }
-
 }
