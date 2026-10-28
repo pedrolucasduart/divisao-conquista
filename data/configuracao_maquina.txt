@@ -1,4 +1,11 @@
+Maquina utilizada na Etapa 1:
 Processador: AMD Ryzen 5 5600gt
-Memória RAM: 16gb
+Memória RAM: 16 GB
 Sistema operacional: Windows 10
+Java: 21
+
+Maquina utilizada na Etapa 2:
+Processador: AMD Ryzen 5 5600GT
+Memória RAM: 16 GB
+Sistema operacional: Windows 11 Pro
 Java: 21
